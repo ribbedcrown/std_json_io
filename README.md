@@ -59,7 +59,9 @@ config :my_app, MyApp.ReactIo,
   script: "path/to/script", # for react-io use "react-stdio"
   watch_files: [
     Path.join([__DIR__, "../priv/server/js/component.js"]) # do not watch files in dev
-  ]
+  ],
+  worker: false, # default true
+  reloader: false # default true
 ```
 
 * `script` - the script to run for the IO server
@@ -67,4 +69,5 @@ config :my_app, MyApp.ReactIo,
   kill the IO worker and restart, picking up any changes. Use only in dev.
 * `pool_size` - The size for the pool of workers - See poolboy `size`
 * `max_overflow` - The poolboy `max_overflow`
-
+* `worker` - Worker will start if `true`. You probably want to set this option to `false` in `dev` or `test` environments
+* `reloader - Reloader will start if worker has been started and this option is set `true`. You probably want to set this option to `false` in `test or `prod` environments
